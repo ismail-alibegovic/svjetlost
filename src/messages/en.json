@@ -193,7 +193,7 @@
     "mapNote": "The map is not loaded until you ask for it. Directions open in Google Maps.",
     "mapTitle": "Map",
     "loadMap": "Show interactive map",
-    "mapConsent": "Loading the map lets OpenStreetMap process data about your device (such as your IP address)."
+    "mapConsent": "Loading the map lets Google Maps process data about your device (such as your IP address)."
   },
   "faqSection": {
     "eyebrow": "FAQ",
@@ -237,7 +237,7 @@
     "accept": "Got it",
     "settings": "Settings",
     "necessary": "Necessary (always on)",
-    "maps": "External content (OpenStreetMap)",
+    "maps": "External content (Google Maps)",
     "save": "Save choice"
   },
   "booking": {

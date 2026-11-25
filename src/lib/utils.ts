@@ -25,14 +25,14 @@ export function mapsUrl(query: string) {
 }
 
 /**
- * OpenStreetMap embed (frameable, no API key). Google's `output=embed` URL now redirects to
- * /maps/embed with `X-Frame-Options: SAMEORIGIN`, so it can no longer be iframed without an API key.
+ * Google Maps Embed API URL (free, but requires NEXT_PUBLIC_GOOGLE_MAPS_KEY).
+ * Google's keyless `output=embed` URL sends `X-Frame-Options: SAMEORIGIN`, so it cannot be iframed.
+ * Returns null when no key is configured.
  */
-export function osmEmbedUrl({ lat, lon, exact }: { lat: number; lon: number; exact: boolean }) {
-  const dLon = 0.004;
-  const dLat = 0.0024;
-  const bbox = [lon - dLon, lat - dLat, lon + dLon, lat + dLat].map((n) => n.toFixed(5)).join(",");
-  return `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik${exact ? `&marker=${lat},${lon}` : ""}`;
+export function googleEmbedUrl({ lat, lon }: { lat: number; lon: number }) {
+  const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
+  if (!key) return null;
+  return `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(key)}&q=${lat},${lon}&zoom=16`;
 }
 
 export function telHref(phone: string) {

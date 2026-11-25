@@ -7,7 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight, Clock, Mail, MapPin, Navigation, Phone } from "lucide-react";
 import { locations } from "@/content/clinic";
 import { BookButton } from "@/components/booking/BookButton";
-import { cn, mapsUrl, osmEmbedUrl, pick, telHref } from "@/lib/utils";
+import { cn, googleEmbedUrl, mapsUrl, pick, telHref } from "@/lib/utils";
 
 export function LocationSelector() {
   const locale = useLocale();
@@ -16,6 +16,7 @@ export function LocationSelector() {
   const reduce = useReducedMotion();
   const [idx, setIdx] = useState(0);
   const l = locations[idx];
+  const embed = googleEmbedUrl(l.coords);
 
 
   return (
@@ -97,14 +98,31 @@ export function LocationSelector() {
 
       <div className="lg:col-span-7">
         <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] bg-mist lg:aspect-auto lg:h-full lg:min-h-[32rem]">
-          <iframe
-            key={l.slug}
-            title={`${t("mapTitle")}: ${pick(l.name, locale)}`}
-            src={osmEmbedUrl(l.coords)}
-            className="absolute inset-0 size-full border-0"
-            loading="lazy"
-            referrerPolicy="strict-origin-when-cross-origin"
-          />
+          {embed ? (
+            <iframe
+              key={l.slug}
+              title={`${t("mapTitle")}: ${pick(l.name, locale)}`}
+              src={embed}
+              className="absolute inset-0 size-full border-0"
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            />
+          ) : (
+            <a
+              href={mapsUrl(l.mapQuery)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-ice p-8 text-center text-ink"
+            >
+              <MapPin className="size-10 text-brand-strong" aria-hidden />
+              <span className="font-display text-lg font-semibold">{pick(l.name, locale)}</span>
+              <span className="text-sm text-muted">{l.street}, {l.postal} {l.city}</span>
+              <span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-ink px-5 text-sm font-semibold text-white">
+                {tc("openInMaps")} <ArrowUpRight className="size-4" aria-hidden />
+              </span>
+            </a>
+          )}
         </div>
         <p className="mt-3 text-sm text-muted">
           <a href={mapsUrl(l.mapQuery)} target="_blank" rel="noopener noreferrer" className="link-underline inline-flex items-center gap-1.5 font-semibold text-ink">

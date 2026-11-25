@@ -193,7 +193,7 @@
     "mapNote": "Karta se ne učitava dok to ne zatražite. Upute za dolazak otvaraju se u Google Maps.",
     "mapTitle": "Karta",
     "loadMap": "Prikaži interaktivnu kartu",
-    "mapConsent": "Učitavanjem karte OpenStreetMap može obrađivati podatke o vašem uređaju (npr. IP adresu)."
+    "mapConsent": "Učitavanjem karte Google Maps može obrađivati podatke o vašem uređaju (npr. IP adresu)."
   },
   "faqSection": {
     "eyebrow": "Česta pitanja",
@@ -237,7 +237,7 @@
     "accept": "Razumijem",
     "settings": "Postavke",
     "necessary": "Neophodni (uvijek aktivni)",
-    "maps": "Vanjski sadržaj (OpenStreetMap)",
+    "maps": "Vanjski sadržaj (Google Maps)",
     "save": "Sačuvaj izbor"
   },
   "booking": {
