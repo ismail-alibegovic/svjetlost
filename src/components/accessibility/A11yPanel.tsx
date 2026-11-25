@@ -38,6 +38,12 @@ export function A11yPanel() {
   }
 
   useEffect(() => {
+    const onOpen = () => setOpen(true);
+    window.addEventListener("svjetlost:a11y-open", onOpen);
+    return () => window.removeEventListener("svjetlost:a11y-open", onOpen);
+  }, []);
+
+  useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -112,7 +118,7 @@ export function A11yPanel() {
         aria-expanded={open}
         aria-controls="a11y-panel"
         onClick={() => setOpen((o) => !o)}
-        className="grid size-12 place-items-center rounded-full bg-paper text-ink shadow-[0_10px_30px_-10px_rgba(10,25,41,0.5)] ring-1 ring-line transition hover:bg-ice"
+        className="hidden size-12 place-items-center rounded-full bg-paper md:grid text-ink shadow-[0_10px_30px_-10px_rgba(10,25,41,0.5)] ring-1 ring-line transition hover:bg-ice"
         aria-label={t("open")}
       >
         <Accessibility className="size-5" aria-hidden />

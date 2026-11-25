@@ -44,7 +44,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/o-klini
       <section className="bg-mist py-[var(--section-space)]" aria-labelledby="facilities">
         <div className="container-x grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="grid grid-cols-2 gap-4 lg:col-span-6">
-            {[images.operatingTheatre, images.examRoom, images.recoveryRoom, images.laserSuite].map((im, i) => (
+            {[images.operatingTheatre, images.examRoom, images.recoveryRoom].map((im, i) => (
               <div key={im.src} className={"relative overflow-hidden rounded-[var(--radius-card)] " + (i === 0 ? "col-span-2 aspect-[16/9]" : "aspect-square")}>
                 <Image src={im.src} alt={pick(im.alt, locale)} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover" />
               </div>

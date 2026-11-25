@@ -28,7 +28,7 @@ export const images = {
     en: "Panorama of Sarajevo with snow-capped mountains",
   }, `Sporisevic Photography / ${UNSPLASH}`),
 
-  examRoom: clinicImg("clinic/exam-room", 1362, 600, { bs: "Oftalmološki pregled na biomikroskopu u Klinici Svjetlost", en: "Ophthalmic examination at a slit lamp in Svjetlost clinic" }),
+  examRoom: clinicImg("clinic/biomicroscope", 800, 533, { bs: "Biomikroskop za oftalmološki pregled u ambulanti Klinike Svjetlost", en: "Slit lamp for eye examinations in a Svjetlost consulting room" }),
   laserSuite: clinicImg("clinic/laser-suite", 800, 533, { bs: "Ljekar u laserskoj sali s excimer laserom", en: "Doctor in the laser suite with an excimer laser" }),
   femtoLaser: clinicImg("clinic/femtosecond-laser", 800, 533, { bs: "Laserska sala s ležajem za pacijenta i femtosekundnim laserom", en: "Laser suite with patient bed and femtosecond laser" }),
   cataractSurgery: clinicImg("clinic/cataract-surgery", 800, 533, { bs: "Operativni tim tokom zahvata pod operacijskim mikroskopom", en: "Surgical team operating under a surgical microscope" }),

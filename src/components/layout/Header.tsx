@@ -222,9 +222,11 @@ export function Header() {
               >
                 <Phone className="size-5" aria-hidden />
               </a>
-              <BookButton variant={solid ? "primary" : "light"} className="hidden min-h-11 px-5 text-sm md:inline-flex">
-                {tc("book")}
-              </BookButton>
+              <span className="hidden md:block">
+                <BookButton variant={solid ? "primary" : "light"} className="min-h-11 px-5 text-sm">
+                  {tc("book")}
+                </BookButton>
+              </span>
               <button
                 type="button"
                 onClick={() => setMobile(true)}
@@ -388,6 +390,18 @@ export function Header() {
                 <li><Link href="/cesta-pitanja">{t("faq")}</Link></li>
                 <li><Link href="/novosti">{t("news")}</Link></li>
                 <li><Link href="/privatnost">{t("privacy")}</Link></li>
+                <li className="col-span-2">
+                  <button
+                    type="button"
+                    className="underline underline-offset-4"
+                    onClick={() => {
+                      setMobile(false);
+                      window.dispatchEvent(new Event("svjetlost:a11y-open"));
+                    }}
+                  >
+                    {tc("accessibility")}
+                  </button>
+                </li>
               </ul>
             </nav>
             <div className="container-x sticky bottom-0 grid gap-3 bg-ink pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-4">

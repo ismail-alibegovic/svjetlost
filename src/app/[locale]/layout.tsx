@@ -12,9 +12,10 @@ import { A11yPanel } from "@/components/accessibility/A11yPanel";
 import { CookieNotice } from "@/components/accessibility/CookieNotice";
 import { SITE_URL } from "@/content/clinic";
 
-const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter", display: "swap" });
-const manrope = Manrope({ subsets: ["latin", "latin-ext"], variable: "--font-manrope", display: "swap", weight: ["400", "500", "600", "700"] });
-const newsreader = Newsreader({ subsets: ["latin", "latin-ext"], variable: "--font-newsreader", display: "swap", style: ["normal", "italic"], weight: ["300", "400"] });
+// `optional`: on slow first visits keep the size-adjusted fallback rather than re-painting late (protects LCP/CLS).
+const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter", display: "optional" });
+const manrope = Manrope({ subsets: ["latin", "latin-ext"], variable: "--font-manrope", display: "optional", weight: ["600", "700"] });
+const newsreader = Newsreader({ subsets: ["latin", "latin-ext"], variable: "--font-newsreader", display: "optional", style: ["normal", "italic"], weight: ["300"], preload: false });
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

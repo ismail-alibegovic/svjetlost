@@ -47,7 +47,8 @@
     "toTop": "Na vrh",
     "photoConcept": "Konceptualna fotografija",
     "photoClinic": "Fotografija: Klinika Svjetlost",
-    "reviewNote": "Medicinski sadržaj temelji se na službenim informacijama klinike i zahtijeva stručnu reviziju prije produkcije."
+    "reviewNote": "Medicinski sadržaj temelji se na službenim informacijama klinike i zahtijeva stručnu reviziju prije produkcije.",
+    "accessibility": "Pristupačnost"
   },
   "nav": {
     "home": "Početna",

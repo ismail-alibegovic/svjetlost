@@ -47,7 +47,8 @@
     "toTop": "Back to top",
     "photoConcept": "Conceptual photograph",
     "photoClinic": "Photo: Svjetlost clinic",
-    "reviewNote": "Medical content is based on the clinic’s official information and requires clinical review before production."
+    "reviewNote": "Medical content is based on the clinic’s official information and requires clinical review before production.",
+    "accessibility": "Accessibility"
   },
   "nav": {
     "home": "Home",

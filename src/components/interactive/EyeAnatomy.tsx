@@ -143,7 +143,7 @@ export function EyeAnatomy() {
                   <span
                     className={cn(
                       "absolute left-1/2 top-full mt-0.5 -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-semibold transition",
-                      on(h.id) ? "bg-white text-ink" : "bg-ink/80 text-white",
+                      on(h.id) ? "z-10 bg-white text-ink" : "bg-ink/80 text-white max-sm:sr-only",
                     )}
                   >
                     {t(h.id)}

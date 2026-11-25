@@ -39,8 +39,8 @@ export async function PageHero({
               {eyebrow}
             </p>
           )}
-          <h1 className={cn("anim-reveal text-h1 font-semibold tracking-[-0.035em] [animation-delay:0.15s]", eyebrow ? "mt-5" : "mt-10")}>{title}</h1>
-          {intro && <p className="anim-reveal on-dark-muted mt-6 max-w-2xl text-lead text-white/72 [animation-delay:0.25s]">{intro}</p>}
+          <h1 className={cn("text-h1 font-semibold tracking-[-0.035em]", eyebrow ? "mt-5" : "mt-10")}>{title}</h1>
+          {intro && <p className="on-dark-muted mt-6 max-w-2xl text-lead text-white/72">{intro}</p>}
           {children && <div className="anim-reveal mt-9 [animation-delay:0.35s]">{children}</div>}
         </div>
         {image && (
