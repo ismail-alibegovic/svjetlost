@@ -27,3 +27,10 @@ export function mapsUrl(query: string) {
 export function telHref(phone: string) {
   return `tel:${phone.replace(/[^+\d]/g, "")}`;
 }
+
+export function monthLabel(date: string, locale: string) {
+  const [y, m] = date.split("-").map(Number);
+  const bs = ["januar","februar","mart","april","maj","juni","juli","august","septembar","oktobar","novembar","decembar"];
+  const en = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  return `${(locale === "bs" ? bs : en)[m - 1]} ${y}`;
+}

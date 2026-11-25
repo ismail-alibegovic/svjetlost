@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Accessibility, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { parseStored, useStored, writeStored } from "@/lib/use-stored";
 
 type Prefs = { scale: "md" | "lg" | "xl"; contrast: boolean; motion: boolean };
 const KEY = "svjetlost-a11y";
@@ -23,31 +24,17 @@ function apply(p: Prefs) {
 export function A11yPanel() {
   const t = useTranslations("a11y");
   const [open, setOpen] = useState(false);
-  const [prefs, setPrefs] = useState<Prefs>(DEFAULTS);
+  const stored = useStored(KEY);
+  const prefs: Prefs = { ...DEFAULTS, ...(parseStored<Partial<Prefs>>(stored) ?? {}) };
   const panelRef = useRef<HTMLDivElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(KEY);
-      if (raw) {
-        const p = { ...DEFAULTS, ...(JSON.parse(raw) as Partial<Prefs>) };
-        setPrefs(p);
-        apply(p);
-      }
-    } catch {
-      /* storage unavailable */
-    }
-  }, []);
+    apply(prefs);
+  }, [prefs.scale, prefs.contrast, prefs.motion]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function update(next: Prefs) {
-    setPrefs(next);
-    apply(next);
-    try {
-      localStorage.setItem(KEY, JSON.stringify(next));
-    } catch {
-      /* ignore */
-    }
+    writeStored(KEY, next);
   }
 
   useEffect(() => {

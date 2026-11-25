@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { buttonClass } from "@/components/ui/Button";
+import { parseStored, useStored, writeStored } from "@/lib/use-stored";
 
 const KEY = "svjetlost-cookie-choice";
 export const COOKIE_EVENT = "svjetlost:cookie-settings";
@@ -20,30 +21,27 @@ export function readCookieChoice(): CookieChoice | null {
 
 export function CookieNotice() {
   const t = useTranslations("cookies");
-  const [open, setOpen] = useState(false);
+  const stored = useStored(KEY);
+  const choice = parseStored<CookieChoice>(stored);
+  const [manualOpen, setManualOpen] = useState(false);
   const [details, setDetails] = useState(false);
-  const [maps, setMaps] = useState(false);
+  const [mapsDraft, setMaps] = useState<boolean | null>(null);
+  const maps = mapsDraft ?? choice?.maps ?? false;
+  const open = manualOpen || stored === null;
 
   useEffect(() => {
-    const choice = readCookieChoice();
-    if (!choice) setOpen(true);
-    else setMaps(choice.maps);
     const onOpen = () => {
       setDetails(true);
-      setOpen(true);
+      setManualOpen(true);
     };
     window.addEventListener(COOKIE_EVENT, onOpen);
     return () => window.removeEventListener(COOKIE_EVENT, onOpen);
   }, []);
 
-  function save(choice: CookieChoice) {
-    try {
-      localStorage.setItem(KEY, JSON.stringify(choice));
-    } catch {
-      /* ignore */
-    }
-    window.dispatchEvent(new CustomEvent("svjetlost:cookie-changed", { detail: choice }));
-    setOpen(false);
+  function save(next: CookieChoice) {
+    writeStored(KEY, next);
+    window.dispatchEvent(new CustomEvent("svjetlost:cookie-changed", { detail: next }));
+    setManualOpen(false);
   }
 
   if (!open) return null;

@@ -1,14 +1,14 @@
 "use client";
 import type React from "react";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight, Clock, Mail, MapPin, Navigation, Phone } from "lucide-react";
 import { locations } from "@/content/clinic";
 import { BookButton } from "@/components/booking/BookButton";
 import { cn, mapsUrl, pick, telHref } from "@/lib/utils";
-import { readCookieChoice } from "@/components/accessibility/CookieNotice";
+import { parseStored, useStored } from "@/lib/use-stored";
 
 export function LocationSelector() {
   const locale = useLocale();
@@ -16,15 +16,11 @@ export function LocationSelector() {
   const tc = useTranslations("common");
   const reduce = useReducedMotion();
   const [idx, setIdx] = useState(0);
-  const [mapOn, setMapOn] = useState(false);
+  const [mapClicked, setMapOn] = useState(false);
+  const consent = parseStored<{ maps: boolean }>(useStored("svjetlost-cookie-choice"));
+  const mapOn = mapClicked || Boolean(consent?.maps);
   const l = locations[idx];
 
-  useEffect(() => {
-    if (readCookieChoice()?.maps) setMapOn(true);
-    const on = (e: Event) => setMapOn(Boolean((e as CustomEvent<{ maps: boolean }>).detail?.maps));
-    window.addEventListener("svjetlost:cookie-changed", on);
-    return () => window.removeEventListener("svjetlost:cookie-changed", on);
-  }, []);
 
   return (
     <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">

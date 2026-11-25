@@ -25,7 +25,6 @@ export function CountUp({ value, locale, grouped = false, prefix = "", suffix = 
       setDisplay(Math.round(start + (value - start) * eased));
       if (p < 1) raf = requestAnimationFrame(tick);
     };
-    setDisplay(start);
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [inView, reduce, start, value]);
