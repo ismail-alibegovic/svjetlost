@@ -42,7 +42,8 @@
 
 @layer base {
   :root {
-    --page-gutter: clamp(1rem, 0.4rem + 2.6vw, 3rem);
+    /* Gutters never smaller than the landscape safe-area insets (viewport-fit=cover). */
+    --page-gutter: max(clamp(1rem, 0.4rem + 2.6vw, 3rem), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
     --section-space: clamp(5rem, 3rem + 7vw, 10rem);
     --header-h: 4.5rem;
     color-scheme: light;
@@ -62,7 +63,30 @@
   }
   html[data-contrast="high"] .on-dark-muted { color: #e6eef6 !important; }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent; /* no gray flash on tap; controls have their own :active state */
+    /* Pull-to-refresh left on purpose: this is a scrolling document. Inner scrollers use overscroll-behavior: contain. */
+  }
+
+  /* Controls: fire click without the double-tap-zoom wait, and don't select their labels on long-press. */
+  button, a, [role="button"], [role="radio"], [role="tab"], [role="slider"], summary, label:has(> input[type="radio"]), label:has(> input[type="checkbox"]) {
+    touch-action: manipulation;
+  }
+  button, [role="button"], [role="radio"], [role="tab"], [role="slider"], summary {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  /* iOS zooms into inputs under 16px and never zooms back. */
+  input, textarea, select { font-size: max(16px, 1rem); }
+
+  /* Press feedback on pointer-down for every chip/toggle (Button already has active:scale). */
+  [aria-pressed], [role="radio"], [role="tab"] {
+    transition: transform 120ms var(--ease-out-expo);
+  }
+  [aria-pressed]:active, [role="radio"]:active, [role="tab"]:active { transform: scale(0.97); }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after {
@@ -128,7 +152,10 @@
     background-repeat: no-repeat;
     transition: background-size 0.5s var(--ease-out-expo);
   }
-  .link-underline:hover, .link-underline:focus-visible { background-size: 100% 1px; }
+  .link-underline:focus-visible { background-size: 100% 1px; }
+  @media (hover: hover) and (pointer: fine) {
+    .link-underline:hover { background-size: 100% 1px; }
+  }
 
   .grain {
     position: relative;

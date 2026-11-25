@@ -180,7 +180,7 @@ export function BookingModal({ open, preset, onClose }: { open: boolean; preset:
             else next();
           }}
         >
-          <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6 sm:px-8">
+          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 py-6 sm:px-8">
             <p id={`${uid}-demo`} className="mb-6 flex gap-3 rounded-2xl bg-mist p-4 text-sm leading-relaxed text-muted">
               <Info className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden />
               {t("demoNote")}
@@ -309,13 +309,13 @@ export function BookingModal({ open, preset, onClose }: { open: boolean; preset:
                     <div className="grid gap-5">
                       <p className="-mt-2 text-sm text-muted">{t("q5hint")}</p>
                       <Field id={`${uid}-name`} label={t("name")} error={errors.name && t(String(errors.name.message))}>
-                        <input id={`${uid}-name`} type="text" autoComplete="name" aria-invalid={!!errors.name} aria-describedby={errors.name ? `${uid}-name-err` : undefined} className={inputClass(!!errors.name)} {...register("name")} />
+                        <input id={`${uid}-name`} type="text" autoComplete="name" autoCapitalize="words" enterKeyHint="next" aria-invalid={!!errors.name} aria-describedby={errors.name ? `${uid}-name-err` : undefined} className={inputClass(!!errors.name)} {...register("name")} />
                       </Field>
                       <Field id={`${uid}-phone`} label={t("phone")} error={errors.phone && t(String(errors.phone.message))}>
-                        <input id={`${uid}-phone`} type="tel" inputMode="tel" autoComplete="tel" placeholder="+387 6x xxx xxx" aria-invalid={!!errors.phone} aria-describedby={errors.phone ? `${uid}-phone-err` : undefined} className={inputClass(!!errors.phone)} {...register("phone")} />
+                        <input id={`${uid}-phone`} type="tel" inputMode="tel" autoComplete="tel" enterKeyHint="next" placeholder="+387 6x xxx xxx" aria-invalid={!!errors.phone} aria-describedby={errors.phone ? `${uid}-phone-err` : undefined} className={inputClass(!!errors.phone)} {...register("phone")} />
                       </Field>
                       <Field id={`${uid}-email`} label={t("email")} error={errors.email && t(String(errors.email.message))}>
-                        <input id={`${uid}-email`} type="email" autoComplete="email" aria-invalid={!!errors.email} aria-describedby={errors.email ? `${uid}-email-err` : undefined} className={inputClass(!!errors.email)} {...register("email")} />
+                        <input id={`${uid}-email`} type="email" autoComplete="email" autoCapitalize="none" autoCorrect="off" spellCheck={false} enterKeyHint="next" aria-invalid={!!errors.email} aria-describedby={errors.email ? `${uid}-email-err` : undefined} className={inputClass(!!errors.email)} {...register("email")} />
                       </Field>
                       <div>
                         <label htmlFor={`${uid}-consent`} className="flex cursor-pointer gap-3 rounded-2xl border border-line p-4 text-sm leading-relaxed text-text has-[:checked]:border-brand has-[:checked]:bg-ice/40">
@@ -376,7 +376,7 @@ export function BookingModal({ open, preset, onClose }: { open: boolean; preset:
           </div>
 
           {/* Footer actions */}
-          <div className="flex items-center justify-between gap-3 border-t border-line px-6 py-4 sm:px-8">
+          <div className="flex items-center justify-between gap-3 border-t border-line px-6 pb-[calc(1rem+env(safe-area-inset-bottom,0px))] pt-4 sm:px-8 sm:pb-4">
             {result ? (
               <button type="button" onClick={onClose} className={buttonClass("primary", "ml-auto")}>
                 {t("done")}

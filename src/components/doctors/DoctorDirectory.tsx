@@ -18,7 +18,7 @@ export function DoctorDirectory() {
   const list = doctors.filter((d) => f === "all" || d.focus.includes(f));
   return (
     <div>
-      <div role="group" aria-label={t("filterLabel")} className="no-scrollbar -mx-[var(--page-gutter)] flex gap-2 overflow-x-auto px-[var(--page-gutter)] pb-2">
+      <div role="group" aria-label={t("filterLabel")} className="no-scrollbar -mx-[var(--page-gutter)] flex gap-2 overflow-x-auto overscroll-x-contain px-[var(--page-gutter)] pb-2">
         {FILTERS.map((k) => (
           <button
             key={k}

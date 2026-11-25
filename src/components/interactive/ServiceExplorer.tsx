@@ -25,7 +25,7 @@ export function ServiceExplorer({ showAllLink = true }: { showAllLink?: boolean 
 
   return (
     <div>
-      <div role="group" aria-label={t("filterLabel")} className="no-scrollbar -mx-[var(--page-gutter)] flex gap-2 overflow-x-auto px-[var(--page-gutter)] pb-2">
+      <div role="group" aria-label={t("filterLabel")} className="no-scrollbar -mx-[var(--page-gutter)] flex gap-2 overflow-x-auto overscroll-x-contain px-[var(--page-gutter)] pb-2">
         {serviceCategories.map((c) => (
           <button
             key={c.id}

@@ -130,7 +130,7 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50">
+      <header className="fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top,0px)]">
         {/* Top information bar */}
         <div
           className={cn(
@@ -178,7 +178,7 @@ export function Header() {
 
             <nav aria-label="Primary" className="hidden lg:block">
               <ul className="flex items-center gap-1 text-[0.9375rem] font-medium">
-                <li onMouseEnter={openMega} onMouseLeave={scheduleClose}>
+                <li onPointerEnter={(e) => e.pointerType === "mouse" && openMega()} onPointerLeave={(e) => e.pointerType === "mouse" && scheduleClose()}>
                   <button
                     ref={megaBtn}
                     type="button"
@@ -249,8 +249,8 @@ export function Header() {
               ref={megaRef}
               role="region"
               aria-label={t("megaTitle")}
-              onMouseEnter={openMega}
-              onMouseLeave={scheduleClose}
+              onPointerEnter={(e) => e.pointerType === "mouse" && openMega()}
+              onPointerLeave={(e) => e.pointerType === "mouse" && scheduleClose()}
               initial={reduce ? false : { opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={reduce ? { opacity: 0 } : { opacity: 0, y: -8 }}
@@ -333,7 +333,7 @@ export function Header() {
             animate={reduce ? { opacity: 1 } : { opacity: 1, clipPath: "circle(150% at 92% 4%)" }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, clipPath: "circle(0% at 92% 4%)" }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[60] flex flex-col overflow-y-auto bg-ink text-white lg:hidden"
+            className="fixed inset-0 z-[60] flex flex-col overflow-y-auto overscroll-contain bg-ink pt-[env(safe-area-inset-top,0px)] text-white lg:hidden"
           >
             <div className="container-x flex h-[4.5rem] shrink-0 items-center justify-between">
               <Logo tone="white" className="h-8" />

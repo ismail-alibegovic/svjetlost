@@ -22,9 +22,16 @@ export function generateStaticParams() {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#0a1929",
+  // The top of every page is the dark header/hero in both OS schemes, so the bar matches it in both.
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#0a1929" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a1929" },
+  ],
+  colorScheme: "light",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover", // paint under notch/home indicator; content is padded back with env(safe-area-inset-*)
+  interactiveWidget: "resizes-content", // Android keyboard shrinks the layout viewport like iOS (booking form)
 };
 
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {

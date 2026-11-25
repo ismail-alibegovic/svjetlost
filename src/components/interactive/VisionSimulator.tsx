@@ -144,7 +144,7 @@ export function VisionSimulator() {
         </filter>
       </svg>
 
-      <div role="radiogroup" aria-label={t("modesLabel")} className="no-scrollbar -mx-[var(--page-gutter)] flex gap-2 overflow-x-auto px-[var(--page-gutter)] pb-2">
+      <div role="radiogroup" aria-label={t("modesLabel")} className="no-scrollbar -mx-[var(--page-gutter)] flex gap-2 overflow-x-auto overscroll-x-contain px-[var(--page-gutter)] pb-2">
         {MODES.map((m) => (
           <button
             key={m}

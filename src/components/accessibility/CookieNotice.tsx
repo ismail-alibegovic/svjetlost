@@ -46,7 +46,7 @@ export function CookieNotice() {
 
   if (!open) return null;
   return (
-    <div role="region" aria-label={t("title")} className="fixed inset-x-3 bottom-3 z-[45] mx-auto max-w-xl rounded-3xl bg-paper p-5 text-ink shadow-[0_30px_60px_-20px_rgba(10,25,41,0.45)] ring-1 ring-line md:bottom-6 md:left-6 md:right-auto md:mx-0">
+    <div role="region" aria-label={t("title")} className="fixed inset-x-3 bottom-[calc(0.75rem+env(safe-area-inset-bottom,0px))] z-[45] mx-auto max-w-xl rounded-3xl bg-paper p-5 text-ink shadow-[0_30px_60px_-20px_rgba(10,25,41,0.45)] ring-1 ring-line md:bottom-6 md:left-6 md:right-auto md:mx-0">
       <p className="font-display font-semibold">{t("title")}</p>
       <p className="mt-2 text-sm leading-relaxed text-muted">{t("text")}</p>
       {details && (

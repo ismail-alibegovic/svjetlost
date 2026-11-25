@@ -57,7 +57,7 @@ export function A11yPanel() {
   }, [open]);
 
   return (
-    <div className="fixed bottom-24 right-3 z-40 flex flex-col items-end md:bottom-6 md:right-6">
+    <div className="fixed bottom-[calc(6rem+env(safe-area-inset-bottom,0px))] right-3 z-40 flex flex-col items-end md:bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))] md:right-6">
       {open && (
         <div
           ref={panelRef}
