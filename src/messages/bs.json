@@ -41,7 +41,7 @@
     "phone": "Telefon",
     "email": "E-mail",
     "address": "Adresa",
-    "fax": "Fax",
+    "fax": "Faks",
     "workingHoursNote": "Subota i nedjelja: radno vrijeme nije objavljeno na službenoj stranici.",
     "foreignPatients": "Pacijenti iz inostranstva",
     "toTop": "Na vrh",
@@ -190,9 +190,10 @@
     "title": "Dvije adrese u Sarajevu.",
     "intro": "Izaberite lokaciju za adresu, kontakt i upute za dolazak.",
     "selectorLabel": "Odaberite lokaciju",
-    "mapNote": "Karta se otvara u Google Maps. Ova stranica ne učitava kartografske servise dok ih ne zatražite.",
+    "mapNote": "Karta se ne učitava dok to ne zatražite. Upute za dolazak otvaraju se u Google Maps.",
+    "mapTitle": "Karta",
     "loadMap": "Prikaži interaktivnu kartu",
-    "mapConsent": "Učitavanjem karte Google može obrađivati podatke o vašem uređaju."
+    "mapConsent": "Učitavanjem karte OpenStreetMap može obrađivati podatke o vašem uređaju (npr. IP adresu)."
   },
   "faqSection": {
     "eyebrow": "Česta pitanja",
@@ -236,7 +237,7 @@
     "accept": "Razumijem",
     "settings": "Postavke",
     "necessary": "Neophodni (uvijek aktivni)",
-    "maps": "Vanjski sadržaj (Google Maps)",
+    "maps": "Vanjski sadržaj (OpenStreetMap)",
     "save": "Sačuvaj izbor"
   },
   "booking": {

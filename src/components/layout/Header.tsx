@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ArrowRight, ChevronDown, Clock, MapPin, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Clock, Globe, MapPin, Menu, Phone, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Logo } from "@/components/ui/Logo";
 import { BookButton } from "@/components/booking/BookButton";
@@ -29,33 +29,52 @@ function toTemplate(pathname: string, params: ReturnType<typeof useParams>) {
   return slug && pathname.endsWith(`/${slug}`) ? pathname.slice(0, -slug.length) + "[slug]" : pathname;
 }
 
+const LANGS = [
+  { code: "bs", short: "BS", name: "Bosanski" },
+  { code: "en", short: "EN", name: "English" },
+] as const;
+
+/** Segmented BS | EN control. Always visible, current language is filled; each option names its language. */
 export function LanguageSwitcher({ tone = "dark", className }: { tone?: "dark" | "light"; className?: string }) {
   const locale = useLocale();
   const pathname = usePathname();
   const params = useParams();
   const t = useTranslations("common");
+  const dark = tone === "dark";
   return (
-    <nav aria-label={t("language")} className={cn("flex items-center gap-1 text-xs font-semibold tracking-[0.12em]", className)}>
-      {(["bs", "en"] as const).map((l) => (
-        <Link
-          key={l}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          href={{ pathname: toTemplate(pathname, params), params } as any}
-          locale={l}
-          lang={l}
-          hrefLang={l}
-          aria-current={l === locale ? "true" : undefined}
-          className={cn(
-            "rounded-full px-2.5 py-1.5 uppercase transition",
-            l === locale
-              ? tone === "dark" ? "bg-white/15 text-white" : "bg-ink text-white"
-              : tone === "dark" ? "text-white/70 hover:text-white" : "text-muted hover:text-ink",
-          )}
-        >
-          <span aria-hidden>{l}</span>
-          <span className="sr-only">{l === "bs" ? "Bosanski" : "English"}</span>
-        </Link>
-      ))}
+    <nav
+      aria-label={t("language")}
+      className={cn(
+        "flex items-center gap-0.5 rounded-full p-1 text-xs font-semibold tracking-[0.08em] ring-1 ring-inset",
+        dark ? "ring-white/30" : "ring-line",
+        className,
+      )}
+    >
+      <Globe className={cn("ml-1.5 mr-0.5 hidden size-4 shrink-0 sm:block", dark ? "text-white/70" : "text-muted")} aria-hidden />
+      {LANGS.map((l) => {
+        const active = l.code === locale;
+        return (
+          <Link
+            key={l.code}
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            href={{ pathname: toTemplate(pathname, params), params } as any}
+            locale={l.code}
+            lang={l.code}
+            hrefLang={l.code}
+            title={l.name}
+            aria-current={active ? "true" : undefined}
+            className={cn(
+              "grid min-h-8 min-w-8 place-items-center rounded-full px-2 transition sm:min-w-9 sm:px-2.5",
+              active
+                ? dark ? "bg-white text-ink" : "bg-ink text-white"
+                : dark ? "text-white/80 hover:bg-white/10 hover:text-white" : "text-ink hover:bg-mist",
+            )}
+          >
+            <span aria-hidden>{l.short}</span>
+            <span className="sr-only">{l.name}</span>
+          </Link>
+        );
+      })}
     </nav>
   );
 }
@@ -159,7 +178,6 @@ export function Header() {
             </ul>
             <div className="flex items-center gap-4">
               <span className="rounded-full border border-white/15 px-2.5 py-0.5 text-[0.6875rem] text-white/70">{tm("demoNotice")}</span>
-              <LanguageSwitcher />
             </div>
           </div>
         </div>
@@ -222,6 +240,7 @@ export function Header() {
               >
                 <Phone className="size-5" aria-hidden />
               </a>
+              <LanguageSwitcher tone={solid ? "light" : "dark"} />
               <span className="hidden md:block">
                 <BookButton variant={solid ? "primary" : "light"} className="min-h-11 px-5 text-sm">
                   {tc("book")}

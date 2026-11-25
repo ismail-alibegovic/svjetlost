@@ -39,6 +39,7 @@ export const locations: Location[] = [
     name: { bs: "Svjetlost Sarajevo – Ilidža", en: "Svjetlost Sarajevo – Ilidža" },
     shortName: { bs: "Ilidža", en: "Ilidža" },
     legalName: "Specijalna bolnica za oftalmologiju Svjetlost Sarajevo",
+    legalNameEn: "Svjetlost Sarajevo Special Hospital for Ophthalmology",
     street: "Dr. Mustafe Pintola 23",
     postal: "71000",
     city: "Sarajevo – Ilidža",
@@ -47,6 +48,7 @@ export const locations: Location[] = [
     email: "info@svjetlost-sarajevo.ba",
     hours: weekdays,
     mapQuery: "Dr. Mustafe Pintola 23, 71000 Ilidža, Sarajevo",
+    coords: { lat: 43.82919, lon: 18.30927, exact: true },
     services: {
       bs: "Glavni centar: dvije operacijske sale, šest ambulanti, dijagnostički centar i dnevna bolnica.",
       en: "Main centre: two operating theatres, six consulting rooms, a diagnostic centre and day-surgery unit.",
@@ -58,9 +60,10 @@ export const locations: Location[] = [
   },
   {
     slug: "centar",
-    name: { bs: "Svjetlost Sarajevo – Centar", en: "Svjetlost Sarajevo – Centre" },
-    shortName: { bs: "Centar", en: "Centre" },
+    name: { bs: "Svjetlost Sarajevo – Centar", en: "Svjetlost Sarajevo – Centar" },
+    shortName: { bs: "Centar", en: "Centar" },
     legalName: "Specijalna bolnica za oftalmologiju Svjetlost Sarajevo – Podružnica 1",
+    legalNameEn: "Svjetlost Sarajevo Special Hospital for Ophthalmology – Branch 1",
     street: "Bolnička 8A",
     postal: "71000",
     city: "Sarajevo",
@@ -69,6 +72,8 @@ export const locations: Location[] = [
     email: "klinika@svjetlost-sarajevo.ba",
     hours: weekdays,
     mapQuery: "Bolnička 8A, 71000 Sarajevo",
+    // OSM has no house-number point for Bolnička 8A: centre on the street, draw no pin until confirmed.
+    coords: { lat: 43.8674, lon: 18.415, exact: false },
     services: {
       bs: "Podružnica 1 u centru grada. Popis usluga dostupnih na ovoj lokaciji nije objavljen na službenoj stranici.",
       en: "Branch 1 in the city centre. The list of services available at this location is not published on the official website.",
@@ -88,7 +93,7 @@ export interface Stat {
 /** All figures are quoted from svjetlost.ba. Group figures are labelled as such. */
 export const stats: Stat[] = [
   { value: 2011, label: { bs: "godina otvaranja klinike u Sarajevu", en: "year the Sarajevo clinic opened" }, scope: "sarajevo" },
-  { value: 2, label: { bs: "lokacije u Sarajevu — Ilidža i Centar", en: "Sarajevo locations — Ilidža and Centre" }, scope: "sarajevo" },
+  { value: 2, label: { bs: "lokacije u Sarajevu — Ilidža i Centar", en: "Sarajevo locations — Ilidža and Centar" }, scope: "sarajevo" },
   { value: 16, label: { bs: "ljekara predstavljenih u sarajevskom timu", en: "doctors presented in the Sarajevo team" }, scope: "sarajevo" },
   { value: 250000, suffix: "+", format: "grouped", label: { bs: "operacija oka u grupi Svjetlost", en: "eye operations across the Svjetlost group" }, scope: "group" },
   { value: 80, suffix: "+", label: { bs: "stalno zaposlenih oftalmologa u grupi", en: "full-time ophthalmologists in the group" }, scope: "group" },

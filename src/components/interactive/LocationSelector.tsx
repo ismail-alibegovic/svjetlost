@@ -7,7 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { ArrowUpRight, Clock, Mail, MapPin, Navigation, Phone } from "lucide-react";
 import { locations } from "@/content/clinic";
 import { BookButton } from "@/components/booking/BookButton";
-import { cn, mapsUrl, pick, telHref } from "@/lib/utils";
+import { cn, mapsUrl, osmEmbedUrl, pick, telHref } from "@/lib/utils";
 import { parseStored, useStored } from "@/lib/use-stored";
 
 export function LocationSelector() {
@@ -63,7 +63,7 @@ export function LocationSelector() {
             className="mt-8"
           >
             <h3 className="text-h3 font-semibold text-ink">{pick(l.name, locale)}</h3>
-            <p className="mt-2 text-sm text-muted">{l.legalName}</p>
+            <p className="mt-2 text-sm text-muted">{locale === "en" ? (l.legalNameEn ?? l.legalName) : l.legalName}</p>
             <dl className="mt-8 grid gap-5">
               <Row icon={<MapPin className="size-5" />} label={tc("address")}>
                 {l.street}, {l.postal} {l.city}
@@ -104,11 +104,11 @@ export function LocationSelector() {
           {mapOn ? (
             <iframe
               key={l.slug}
-              title={`${tc("openInMaps")}: ${pick(l.name, locale)}`}
-              src={`https://www.google.com/maps?q=${encodeURIComponent(l.mapQuery)}&output=embed`}
+              title={`${t("mapTitle")}: ${pick(l.name, locale)}`}
+              src={osmEmbedUrl(l.coords)}
               className="absolute inset-0 size-full border-0 grayscale-[30%]"
               loading="lazy"
-              referrerPolicy="no-referrer"
+              referrerPolicy="strict-origin-when-cross-origin"
             />
           ) : (
             <div className="grain absolute inset-0 flex flex-col justify-between bg-[radial-gradient(circle_at_70%_30%,#16304a,#0a1929_70%)] p-8">

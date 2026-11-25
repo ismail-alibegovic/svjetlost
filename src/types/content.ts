@@ -100,6 +100,8 @@ export interface Location {
   name: L;
   shortName: L;
   legalName: string;
+  /** English rendering of the legal name, shown on /en pages (legalName stays the official Bosnian one). */
+  legalNameEn?: string;
   street: string;
   postal: string;
   city: string;
@@ -108,6 +110,8 @@ export interface Location {
   email: string;
   hours: { days: L; time: string }[];
   mapQuery: string;
+  /** WGS84 position for the embedded map. `exact: false` = street-level only (no pin is drawn). */
+  coords: { lat: number; lon: number; exact: boolean };
   services: L;
   note?: L;
 }

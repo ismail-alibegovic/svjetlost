@@ -22,7 +22,7 @@ export default async function ContactPage({ params }: PageProps<"/[locale]/konta
   const tc = await getTranslations({ locale, namespace: "common" });
   const cards = [
     { Icon: Phone, k: "Ilidža", v: clinic.primaryPhone, href: clinic.primaryPhoneHref },
-    { Icon: Phone, k: locale === "bs" ? "Centar" : "Centre", v: clinic.secondaryPhone, href: clinic.secondaryPhoneHref },
+    { Icon: Phone, k: "Centar", v: clinic.secondaryPhone, href: clinic.secondaryPhoneHref },
     { Icon: Mail, k: t("callCentre"), v: clinic.callCentreEmail, href: `mailto:${clinic.callCentreEmail}` },
     { Icon: Globe, k: tc("foreignPatients"), v: clinic.internationalPhone, href: clinic.internationalPhoneHref },
   ];

@@ -3,7 +3,7 @@
     "siteName": "Svjetlost Sarajevo",
     "titleTemplate": "%s — Svjetlost Sarajevo",
     "homeTitle": "Svjetlost Sarajevo — Special Hospital for Ophthalmology",
-    "homeDescription": "Svjetlost Special Hospital for Ophthalmology in Sarajevo: laser vision correction, cataract surgery, retina, glaucoma, paediatric ophthalmology and eye exams. Two locations — Ilidža and the city centre.",
+    "homeDescription": "Svjetlost Special Hospital for Ophthalmology in Sarajevo: laser vision correction, cataract surgery, retina, glaucoma, paediatric ophthalmology and eye exams. Two locations — Ilidža and Centar.",
     "demoNotice": "Unofficial redesign concept — not the clinic’s official website"
   },
   "common": {
@@ -68,7 +68,7 @@
     "featured": "Featured",
     "featuredTitle": "Laser vision correction",
     "featuredText": "Life without glasses starts with a detailed assessment. Find out which method suits your eyes.",
-    "topbarLocations": "Ilidža · Centre",
+    "topbarLocations": "Ilidža · Centar",
     "topbarHours": "Mon–Thu 8–20 · Fri 8–18"
   },
   "hero": {
@@ -190,9 +190,10 @@
     "title": "Two addresses in Sarajevo.",
     "intro": "Choose a location for its address, contact details and directions.",
     "selectorLabel": "Choose a location",
-    "mapNote": "Maps open in Google Maps. This page does not load map services until you ask for them.",
+    "mapNote": "The map is not loaded until you ask for it. Directions open in Google Maps.",
+    "mapTitle": "Map",
     "loadMap": "Show interactive map",
-    "mapConsent": "Loading the map lets Google process data about your device."
+    "mapConsent": "Loading the map lets OpenStreetMap process data about your device (such as your IP address)."
   },
   "faqSection": {
     "eyebrow": "FAQ",
@@ -236,7 +237,7 @@
     "accept": "Got it",
     "settings": "Settings",
     "necessary": "Necessary (always on)",
-    "maps": "External content (Google Maps)",
+    "maps": "External content (OpenStreetMap)",
     "save": "Save choice"
   },
   "booking": {
@@ -337,7 +338,7 @@
     "storiesMeta": "Patient experiences published on Svjetlost’s official website.",
     "locationsTitle": "Locations",
     "locationsIntro": "Two locations in Sarajevo with the same opening hours.",
-    "locationsMeta": "Addresses, phone numbers and opening hours of Svjetlost Sarajevo — Ilidža and the city centre.",
+    "locationsMeta": "Addresses, phone numbers and opening hours of Svjetlost Sarajevo — Ilidža and Centar.",
     "contactTitle": "Contact",
     "contactIntro": "For bookings and questions about examinations and procedures, reach us by phone, email or an appointment request.",
     "contactMeta": "Contact Svjetlost Sarajevo: phone numbers, email addresses and opening hours.",

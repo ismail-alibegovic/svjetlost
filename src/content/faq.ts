@@ -7,7 +7,7 @@ export const faqs: Faq[] = [
     q: { bs: "Kako zakazati oftalmološki pregled?", en: "How do I book an eye examination?" },
     a: {
       bs: "Pregled možete zakazati telefonom na +387 33 762 772 (Ilidža) ili +387 33 821 919 (Centar), e-mailom na info@svjetlost-sarajevo.ba ili slanjem zahtjeva putem obrasca na ovoj stranici. Zahtjev nije potvrđen termin — tim klinike kontaktira vas radi potvrde. Pacijenti iz inostranstva mogu nazvati +385 1 777 5656.",
-      en: "You can book by phone on +387 33 762 772 (Ilidža) or +387 33 821 919 (Centre), by email at info@svjetlost-sarajevo.ba, or by sending a request through the form on this website. A request is not a confirmed appointment — the clinic team will contact you to confirm. Patients from abroad can call +385 1 777 5656.",
+      en: "You can book by phone on +387 33 762 772 (Ilidža) or +387 33 821 919 (Centar), by email at info@svjetlost-sarajevo.ba, or by sending a request through the form on this website. A request is not a confirmed appointment — the clinic team will contact you to confirm. Patients from abroad can call +385 1 777 5656.",
     },
     source: "https://svjetlost.ba/kontakt/14",
   },
@@ -52,7 +52,7 @@ export const faqs: Faq[] = [
     q: { bs: "Gdje se nalaze klinike?", en: "Where are the clinics?" },
     a: {
       bs: "U Sarajevu postoje dvije lokacije: Dr. Mustafe Pintola 23, Ilidža i Bolnička 8A, Centar. Obje rade od ponedjeljka do četvrtka 8–20 h i petkom 8–18 h.",
-      en: "There are two locations in Sarajevo: Dr. Mustafe Pintola 23, Ilidža and Bolnička 8A, Centre. Both are open Monday to Thursday 8:00–20:00 and Friday 8:00–18:00.",
+      en: "There are two locations in Sarajevo: Dr. Mustafe Pintola 23, Ilidža and Bolnička 8A, Centar. Both are open Monday to Thursday 8:00–20:00 and Friday 8:00–18:00.",
     },
     source: "https://svjetlost.ba/kontakt/14",
   },
