@@ -25,8 +25,7 @@ export function CookieNotice() {
   const choice = parseStored<CookieChoice>(stored);
   const [manualOpen, setManualOpen] = useState(false);
   const [details, setDetails] = useState(false);
-  const [mapsDraft, setMaps] = useState<boolean | null>(null);
-  const maps = mapsDraft ?? choice?.maps ?? false;
+  const maps = choice?.maps ?? false;
   const open = manualOpen || stored === null;
 
   useEffect(() => {
@@ -53,9 +52,6 @@ export function CookieNotice() {
         <div className="mt-4 grid gap-3 rounded-2xl bg-mist p-4 text-sm">
           <label className="flex items-center gap-3">
             <input type="checkbox" checked disabled className="size-4 accent-brand" /> {t("necessary")}
-          </label>
-          <label className="flex items-center gap-3">
-            <input type="checkbox" checked={maps} onChange={(e) => setMaps(e.target.checked)} className="size-4 accent-brand" /> {t("maps")}
           </label>
         </div>
       )}

@@ -8,7 +8,6 @@ import { ArrowUpRight, Clock, Mail, MapPin, Navigation, Phone } from "lucide-rea
 import { locations } from "@/content/clinic";
 import { BookButton } from "@/components/booking/BookButton";
 import { cn, mapsUrl, osmEmbedUrl, pick, telHref } from "@/lib/utils";
-import { parseStored, useStored } from "@/lib/use-stored";
 
 export function LocationSelector() {
   const locale = useLocale();
@@ -16,9 +15,6 @@ export function LocationSelector() {
   const tc = useTranslations("common");
   const reduce = useReducedMotion();
   const [idx, setIdx] = useState(0);
-  const [mapClicked, setMapOn] = useState(false);
-  const consent = parseStored<{ maps: boolean }>(useStored("svjetlost-cookie-choice"));
-  const mapOn = mapClicked || Boolean(consent?.maps);
   const l = locations[idx];
 
 
@@ -100,53 +96,21 @@ export function LocationSelector() {
       </div>
 
       <div className="lg:col-span-7">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] bg-ink text-white lg:aspect-auto lg:h-full lg:min-h-[32rem]">
-          {mapOn ? (
-            <iframe
-              key={l.slug}
-              title={`${t("mapTitle")}: ${pick(l.name, locale)}`}
-              src={osmEmbedUrl(l.coords)}
-              className="absolute inset-0 size-full border-0 grayscale-[30%]"
-              loading="lazy"
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
-          ) : (
-            <div className="grain absolute inset-0 flex flex-col justify-between bg-[radial-gradient(circle_at_70%_30%,#16304a,#0a1929_70%)] p-8">
-              {/* Stylised, privacy-friendly map placeholder */}
-              <svg aria-hidden viewBox="0 0 600 400" className="absolute inset-0 size-full opacity-40" preserveAspectRatio="xMidYMid slice">
-                <path d="M-20 260 C120 230 200 280 320 240 S520 190 640 210" stroke="#5cb4ec" strokeWidth="2.5" fill="none" />
-                {Array.from({ length: 12 }).map((_, k) => (
-                  <path key={k} d={`M${k * 55 - 20} -10 L${k * 55 + 40} 410`} stroke="white" strokeOpacity=".06" />
-                ))}
-                {Array.from({ length: 9 }).map((_, k) => (
-                  <path key={`h${k}`} d={`M-10 ${k * 50} L610 ${k * 50 + 30}`} stroke="white" strokeOpacity=".06" />
-                ))}
-              </svg>
-              <div className="relative flex items-center gap-3">
-                <span className="relative grid size-12 place-items-center rounded-full bg-brand">
-                  {!reduce && <span className="absolute inset-0 animate-ping rounded-full bg-brand/50" />}
-                  <MapPin className="relative size-5" aria-hidden />
-                </span>
-                <div>
-                  <p className="font-display text-lg font-semibold">{pick(l.name, locale)}</p>
-                  <p className="text-sm text-white/65">{l.street}</p>
-                </div>
-              </div>
-              <div className="relative max-w-md">
-                <p className="text-sm leading-relaxed text-white/65">{t("mapNote")}</p>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  <button type="button" onClick={() => setMapOn(true)} className="inline-flex min-h-11 items-center rounded-full bg-white px-5 text-sm font-semibold text-ink transition hover:bg-ice">
-                    {t("loadMap")}
-                  </button>
-                  <a href={mapsUrl(l.mapQuery)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 rounded-full px-5 text-sm font-semibold ring-1 ring-inset ring-white/30 transition hover:bg-white/10">
-                    {tc("openInMaps")} <ArrowUpRight className="size-4" aria-hidden />
-                  </a>
-                </div>
-                <p className="mt-3 text-xs text-white/45">{t("mapConsent")}</p>
-              </div>
-            </div>
-          )}
+        <div className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-card)] bg-mist lg:aspect-auto lg:h-full lg:min-h-[32rem]">
+          <iframe
+            key={l.slug}
+            title={`${t("mapTitle")}: ${pick(l.name, locale)}`}
+            src={osmEmbedUrl(l.coords)}
+            className="absolute inset-0 size-full border-0"
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
         </div>
+        <p className="mt-3 text-sm text-muted">
+          <a href={mapsUrl(l.mapQuery)} target="_blank" rel="noopener noreferrer" className="link-underline inline-flex items-center gap-1.5 font-semibold text-ink">
+            {tc("openInMaps")} <ArrowUpRight className="size-4" aria-hidden />
+          </a>
+        </p>
       </div>
     </div>
   );
