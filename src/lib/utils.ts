@@ -24,15 +24,9 @@ export function mapsUrl(query: string) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
 
-/**
- * Google Maps Embed API URL (free, but requires NEXT_PUBLIC_GOOGLE_MAPS_KEY).
- * Google's keyless `output=embed` URL sends `X-Frame-Options: SAMEORIGIN`, so it cannot be iframed.
- * Returns null when no key is configured.
- */
-export function googleEmbedUrl({ lat, lon }: { lat: number; lon: number }) {
-  const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
-  if (!key) return null;
-  return `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(key)}&q=${lat},${lon}&zoom=16`;
+/** Keyless Google Maps embed (verified to be frameable in Chromium). */
+export function googleEmbedUrl({ lat, lon }: { lat: number; lon: number }, hl = "en") {
+  return `https://maps.google.com/maps?q=${lat},${lon}&z=16&hl=${hl}&output=embed`;
 }
 
 export function telHref(phone: string) {
