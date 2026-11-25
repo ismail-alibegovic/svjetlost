@@ -48,7 +48,7 @@ export const locations: Location[] = [
     email: "info@svjetlost-sarajevo.ba",
     hours: weekdays,
     mapQuery: "Dr. Mustafe Pintola 23, 71000 Ilidža, Sarajevo",
-    coords: { lat: 43.82919, lon: 18.30927, exact: true },
+    coords: { lat: 43.828933, lon: 18.3091316, exact: true }, // Google Maps place "Svjetlost Eye Clinic"
     services: {
       bs: "Glavni centar: dvije operacijske sale, šest ambulanti, dijagnostički centar i dnevna bolnica.",
       en: "Main centre: two operating theatres, six consulting rooms, a diagnostic centre and day-surgery unit.",
@@ -72,9 +72,7 @@ export const locations: Location[] = [
     email: "klinika@svjetlost-sarajevo.ba",
     hours: weekdays,
     mapQuery: "Bolnička 8A, 71000 Sarajevo",
-    // OSM has no point for Bolnička 8A: this is a point on the street, so the pin is approximate.
-    // Replace with the building's coordinates (Google Maps: right-click the building) once confirmed.
-    coords: { lat: 43.8674, lon: 18.415, exact: true },
+    coords: { lat: 43.8665168, lon: 18.4143979, exact: true }, // Google Maps place "…Svjetlost-Podružnica 1"
     services: {
       bs: "Podružnica 1 u centru grada. Popis usluga dostupnih na ovoj lokaciji nije objavljen na službenoj stranici.",
       en: "Branch 1 in the city centre. The list of services available at this location is not published on the official website.",
