@@ -72,8 +72,9 @@ export const locations: Location[] = [
     email: "klinika@svjetlost-sarajevo.ba",
     hours: weekdays,
     mapQuery: "Bolnička 8A, 71000 Sarajevo",
-    // OSM has no house-number point for Bolnička 8A: centre on the street, draw no pin until confirmed.
-    coords: { lat: 43.8674, lon: 18.415, exact: false },
+    // OSM has no point for Bolnička 8A: this is a point on the street, so the pin is approximate.
+    // Replace with the building's coordinates (Google Maps: right-click the building) once confirmed.
+    coords: { lat: 43.8674, lon: 18.415, exact: true },
     services: {
       bs: "Podružnica 1 u centru grada. Popis usluga dostupnih na ovoj lokaciji nije objavljen na službenoj stranici.",
       en: "Branch 1 in the city centre. The list of services available at this location is not published on the official website.",
