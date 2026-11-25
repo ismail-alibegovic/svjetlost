@@ -54,12 +54,14 @@ export default async function DoctorPage({ params }: PageProps<"/[locale]/doktor
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <section className="bg-paper pt-28 lg:pt-36">
+      <div className="bg-ink pb-8 pt-32 lg:pt-40">
         <div className="container-x">
-          <div className="rounded-full bg-ink px-5 py-3 sm:inline-block">
-            <Breadcrumbs locale={locale as Locale} items={[{ label: tp("doctorsTitle"), href: "/doktori" }, { label: d.name }]} />
-          </div>
-          <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <Breadcrumbs locale={locale as Locale} items={[{ label: tp("doctorsTitle"), href: "/doktori" }, { label: d.name }]} />
+        </div>
+      </div>
+      <section className="bg-paper pt-12 lg:pt-16">
+        <div className="container-x">
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card)] bg-[#e9ecef] lg:sticky lg:top-28">
                 <Image src={d.image.src} alt={pick(d.image.alt, locale)} fill priority sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover object-top" />

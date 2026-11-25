@@ -23,6 +23,12 @@ const NAV: { key: NavKey; href: "/" | "/doktori" | "/tehnologija" | "/o-klinici"
   { key: "contact", href: "/kontakt" },
 ];
 
+/** usePathname() returns the resolved internal path (e.g. /usluge/ocna-mrena); turn it back into its route template. */
+function toTemplate(pathname: string, params: ReturnType<typeof useParams>) {
+  const slug = typeof params.slug === "string" ? params.slug : null;
+  return slug && pathname.endsWith(`/${slug}`) ? pathname.slice(0, -slug.length) + "[slug]" : pathname;
+}
+
 export function LanguageSwitcher({ tone = "dark", className }: { tone?: "dark" | "light"; className?: string }) {
   const locale = useLocale();
   const pathname = usePathname();
@@ -34,12 +40,11 @@ export function LanguageSwitcher({ tone = "dark", className }: { tone?: "dark" |
         <Link
           key={l}
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          href={{ pathname, params } as any}
+          href={{ pathname: toTemplate(pathname, params), params } as any}
           locale={l}
           lang={l}
           hrefLang={l}
           aria-current={l === locale ? "true" : undefined}
-          aria-label={l === "bs" ? "Bosanski" : "English"}
           className={cn(
             "rounded-full px-2.5 py-1.5 uppercase transition",
             l === locale
@@ -47,7 +52,8 @@ export function LanguageSwitcher({ tone = "dark", className }: { tone?: "dark" |
               : tone === "dark" ? "text-white/70 hover:text-white" : "text-muted hover:text-ink",
           )}
         >
-          {l}
+          <span aria-hidden>{l}</span>
+          <span className="sr-only">{l === "bs" ? "Bosanski" : "English"}</span>
         </Link>
       ))}
     </nav>
@@ -68,6 +74,7 @@ export function Header() {
   const megaRef = useRef<HTMLDivElement>(null);
   const megaBtn = useRef<HTMLButtonElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hoverOpenedAt = useRef(0);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -112,6 +119,7 @@ export function Header() {
   const solid = scrolled || mega;
   const openMega = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
+    if (!mega) hoverOpenedAt.current = Date.now();
     setMega(true);
   };
   const scheduleClose = () => {
@@ -176,7 +184,8 @@ export function Header() {
                     type="button"
                     aria-expanded={mega}
                     aria-controls="mega-services"
-                    onClick={() => setMega((m) => !m)}
+                    // A click right after hover-open must not immediately close the panel.
+                    onClick={() => setMega((m) => (m && Date.now() - hoverOpenedAt.current < 600 ? true : !m))}
                     className={cn(
                       "flex items-center gap-1.5 rounded-full px-4 py-2.5 transition",
                       solid ? "hover:bg-mist" : "hover:bg-white/10",

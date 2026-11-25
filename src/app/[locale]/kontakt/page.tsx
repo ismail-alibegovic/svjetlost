@@ -33,7 +33,7 @@ export default async function ContactPage({ params }: PageProps<"/[locale]/konta
         <div className="container-x grid gap-6 lg:grid-cols-12">
           <div className="rounded-[var(--radius-card)] bg-brand p-8 text-white lg:col-span-4">
             <h2 className="font-display text-2xl font-semibold">{t("contactBook")}</h2>
-            <p className="mt-3 text-white/85">{t("contactBookText")}</p>
+            <p className="mt-3 text-white">{t("contactBookText")}</p>
             <BookButton variant="light" className="mt-8">{tc("book")}</BookButton>
           </div>
           <ul className="grid gap-px overflow-hidden rounded-[var(--radius-card)] bg-line ring-1 ring-line sm:grid-cols-2 lg:col-span-8">

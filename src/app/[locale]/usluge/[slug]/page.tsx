@@ -140,7 +140,7 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/uslug
                 {nav.map((n, i) => (
                   <li key={n.id}>
                     <a href={`#${n.id}`} className="-ml-px flex gap-3 border-l border-transparent py-2 pl-4 text-[0.9375rem] text-muted transition hover:border-brand hover:text-ink">
-                      <span className="w-5 text-xs tabular-nums text-brand/70">{String(i + 1).padStart(2, "0")}</span>
+                      <span className="w-5 text-xs tabular-nums text-brand">{String(i + 1).padStart(2, "0")}</span>
                       {n.label}
                     </a>
                   </li>

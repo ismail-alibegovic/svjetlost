@@ -94,6 +94,7 @@ export function VisionSimulator() {
 
   // Gentle intro sweep so the comparison is discoverable (skipped with reduced motion).
   const swept = useRef(false);
+  const touched = useRef(false); // stop the intro sweep as soon as the visitor interacts
   useEffect(() => {
     if (reduce || swept.current || !frame.current) return;
     const el = frame.current;
@@ -104,6 +105,7 @@ export function VisionSimulator() {
         const t0 = performance.now();
         const tick = (now: number) => {
           const p = Math.min(1, (now - t0) / 1600);
+          if (touched.current) return;
           setPos(50 + Math.sin(p * Math.PI * 2) * 18 * (1 - p));
           if (p < 1) requestAnimationFrame(tick);
         };
@@ -116,6 +118,7 @@ export function VisionSimulator() {
   }, [reduce]);
 
   const onKey = (e: React.KeyboardEvent) => {
+    touched.current = true;
     const step = e.shiftKey ? 10 : 2;
     if (e.key === "ArrowLeft" || e.key === "ArrowDown") setPos((p) => Math.max(0, p - step));
     else if (e.key === "ArrowRight" || e.key === "ArrowUp") setPos((p) => Math.min(100, p + step));
@@ -165,6 +168,7 @@ export function VisionSimulator() {
             ref={frame}
             className="relative aspect-[4/5] touch-pan-y select-none overflow-hidden rounded-[var(--radius-card)] bg-ink-2 sm:aspect-[16/10]"
             onPointerDown={(e) => {
+              touched.current = true;
               dragging.current = true;
               setFromClientX(e.clientX);
             }}

@@ -154,12 +154,10 @@ export function LocationSelector() {
 
 function Row({ icon, label, children }: { icon: React.ReactNode; label: string; children: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-[2.75rem_1fr] gap-3 border-t border-line pt-5">
-      <span aria-hidden className="grid size-11 place-items-center rounded-full bg-ice text-brand-strong">{icon}</span>
-      <div>
-        <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">{label}</dt>
-        <dd className="mt-1 leading-relaxed text-text">{children}</dd>
-      </div>
+    <div className="relative border-t border-line pl-14 pt-5">
+      <span aria-hidden className="absolute left-0 top-5 grid size-11 place-items-center rounded-full bg-ice text-brand-strong">{icon}</span>
+      <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">{label}</dt>
+      <dd className="mt-1 leading-relaxed text-text">{children}</dd>
     </div>
   );
 }

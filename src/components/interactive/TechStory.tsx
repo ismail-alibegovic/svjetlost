@@ -83,8 +83,9 @@ export function TechStory() {
             }}
             data-index={i}
             className={cn(
-              "border-t border-white/10 py-10 transition-opacity duration-700 lg:flex lg:min-h-[78vh] lg:flex-col lg:justify-center lg:py-0",
-              i === active ? "lg:opacity-100" : "lg:opacity-35",
+              "relative border-t border-white/10 py-10 lg:flex lg:min-h-[78vh] lg:flex-col lg:justify-center lg:py-0 lg:pl-8",
+              "before:absolute before:left-0 before:top-1/2 before:hidden before:h-24 before:w-0.5 before:-translate-y-1/2 before:rounded-full before:transition-colors before:duration-700 lg:before:block",
+              i === active ? "before:bg-brand-soft" : "before:bg-white/10",
             )}
           >
             <div className="relative mb-7 aspect-[4/3] overflow-hidden rounded-2xl lg:hidden">

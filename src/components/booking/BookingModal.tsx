@@ -170,7 +170,16 @@ export function BookingModal({ open, preset, onClose }: { open: boolean; preset:
           </ol>
         )}
 
-        <form onSubmit={onSubmit} noValidate className="flex min-h-0 flex-1 flex-col">
+        <form
+          noValidate
+          className="flex min-h-0 flex-1 flex-col"
+          onSubmit={(e) => {
+            // Only the explicit "send" action on the review step may submit (never Enter on earlier steps).
+            e.preventDefault();
+            if (step === total - 1) onSubmit(e);
+            else next();
+          }}
+        >
           <div className="min-h-0 flex-1 overflow-y-auto px-6 py-6 sm:px-8">
             <p id={`${uid}-demo`} className="mb-6 flex gap-3 rounded-2xl bg-mist p-4 text-sm leading-relaxed text-muted">
               <Info className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden />
@@ -382,11 +391,11 @@ export function BookingModal({ open, preset, onClose }: { open: boolean; preset:
                   {t("back")}
                 </button>
                 {step < total - 1 ? (
-                  <button type="button" onClick={next} className={buttonClass("primary")}>
+                  <button key="continue" type="button" onClick={next} className={buttonClass("primary")}>
                     {t("continue")}
                   </button>
                 ) : (
-                  <button type="submit" disabled={isSubmitting} className={buttonClass("primary")}>
+                  <button key="submit" type="submit" disabled={isSubmitting} className={buttonClass("primary")}>
                     {isSubmitting ? (
                       <>
                         <Loader2 className="size-4 animate-spin" aria-hidden /> {t("submitting")}
